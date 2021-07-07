@@ -42,7 +42,6 @@ Base* CreateCustomBaseClass(QWORD* methods)
     return copy;
 }
 
-
 int main()
 {
     QWORD* virtualMethods = GetVfptr(new Child());
