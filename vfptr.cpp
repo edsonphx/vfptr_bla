@@ -37,9 +37,9 @@ QWORD* GetVfptr(Base* anyChild)
 
 Base* CreateCustomBaseClass(QWORD* methods) 
 {
-    Base* cop = (Base*)(&methods);
+    Base* copy = (Base*)(&methods);
 
-    return cop;
+    return copy;
 }
 
 
