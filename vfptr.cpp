@@ -1,6 +1,6 @@
 #include <iostream>
 
-typedef unsigned long QWORD;
+typedef unsigned int DWORD;
 
 class Base 
 {
@@ -29,22 +29,23 @@ void PrintName()
     std::cout << "Funny" << std::endl;
 }
 
-QWORD* GetVfptr(Base* anyChild)
+DWORD* GetVfptr(Base* anyChild)
 {
-    QWORD* _vfptr = *((QWORD**)(anyChild));
+    DWORD* _vfptr = *((DWORD**)(anyChild));
     return _vfptr;
 }
 
-Base* CreateCustomBaseClass(QWORD* methods) 
+Base* CreateCustomBaseClass(DWORD* methods) 
 {
-    Base* copy = (Base*)(&methods);
+    Base* cop = (Base*)(&methods);
 
-    return copy;
+    return cop;
 }
+
 
 int main()
 {
-    QWORD* virtualMethods = GetVfptr(new Child());
+    DWORD* virtualMethods = GetVfptr(new Child());
 
     auto printName = (void(*)())(virtualMethods[0]);
     auto printMessage = (void(*)(const char* msg))(virtualMethods[1]);
@@ -61,8 +62,8 @@ int main()
         call eax
     }
 
-    QWORD* methods = new QWORD[1];
-    methods[0] = (QWORD)&PrintName;
+    DWORD* methods = new DWORD[1];
+    methods[0] = (DWORD)&PrintName;
 
     Base* customBase = CreateCustomBaseClass(methods);
     customBase->PrintName();
